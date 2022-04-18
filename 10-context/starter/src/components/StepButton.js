@@ -1,17 +1,22 @@
 import React from "react";
+import FormContext from "../context/FormContext";
 
 class StepButton extends React.Component {
-  handleOnClick = () => {};
+    static contextType = FormContext;
 
-  render() {
-    return (
-      <input
-        className="step-button"
-        type="submit"
-        value={this.props.label || `Next`}
-        onClick={this.handleOnClick}
-      />
-    );
-  }
+    handleOnClick = () => {
+        this.context.updateStep(this.context.step);
+    };
+
+    render() {
+        return (
+            <input
+                className='step-button'
+                type='submit'
+                value={this.props.label || `Next`}
+                onClick={this.handleOnClick}
+            />
+        );
+    }
 }
 export default StepButton;
